@@ -20,18 +20,18 @@ class JobValidationTests {
 
     @Test
     void whenAllFieldsCorrectThenValidationSucceeds() {
-        var job = new Job(123456, "Developer", "Back-end software developer",
-                "Oracle", "Coding", "Programming");
+        var job = new Job(123456, "Title", "Description",
+                "CompanyName", "Skill1", "Skill2");
         Set<ConstraintViolation<Job>> violations = validator.validate(job);
         assertThat(violations).isEmpty();
     }
 
     @Test
     void whenJobIdDefinedButIncorrectThenValidationFails() {
-        var job = new Job(23, "Developer", "Back-end software developer",
-                "Oracle", "Coding", "Programming");
+        var job = new Job(12345678, "Title", "Description",
+                "CompanyName", "Skill1", "Skill2");
         Set<ConstraintViolation<Job>> violations = validator.validate(job);
         assertThat(violations).hasSize(1);
-        assertThat(violations.iterator().next().getMessage()).isEqualTo("The JobId format must be valid.");
+        assertThat(violations.iterator().next().getMessage()).isEqualTo("The JobId must be 6 digits.");
     }
 }
