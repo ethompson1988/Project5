@@ -11,13 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class JobValidationTests {
     private static Validator validator;
-
     @BeforeAll
     static void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
-
     @Test
     void whenAllFieldsCorrectThenValidationSucceeds() {
         var job = new Job(123456, "Title", "Description",
@@ -25,7 +23,6 @@ class JobValidationTests {
         Set<ConstraintViolation<Job>> violations = validator.validate(job);
         assertThat(violations).isEmpty();
     }
-
     @Test
     void whenJobIdDefinedButIncorrectThenValidationFails() {
         var job = new Job(12345678, "Title", "Description",

@@ -18,9 +18,11 @@ class JobJsonTests {
         var job = new Job(123456, "Title", "Description", "CompanyName", "Skill1", "Skill2");
         var jsonContent = json.write(job);
         assertThat(jsonContent).extractingJsonPathNumberValue("@.JobId")
-                .isEqualTo(job.JobId());
+                .isEqualTo(123456);
+//                .isEqualTo(job.JobId());
         assertThat(jsonContent).extractingJsonPathStringValue("@.title")
                 .isEqualTo(job.title());
+//        System.out.println("@.title");
         assertThat(jsonContent).extractingJsonPathStringValue("@.description")
                 .isEqualTo(job.description());
         assertThat(jsonContent).extractingJsonPathStringValue("@.companyName")
